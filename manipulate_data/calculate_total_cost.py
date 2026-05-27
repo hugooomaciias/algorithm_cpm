@@ -17,20 +17,12 @@ def calculate_total_cost_function(tasks, indirect_cost_A, indirect_cost_B, proje
         direct_cost += task_cost
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t\t» Coste directo del proyecto calculado")
-    # ================================================================== #
-
     # --- Calculamos el coste indirecto total y lo añadimos a las listas --- #
     indirect_cost = indirect_cost_A + (indirect_cost_B * project_duration)
 
     costs_text_content_latex.append(f"({indirect_cost_A}\\euro + ({indirect_cost_B}\\euro $\\cdot$ {project_duration} días))")
     costs_value_content_latex.append(str(indirect_cost))
     # ------------------------------------------------------------------ #
-
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t\t» Coste indirecto del proyecto calculado")
-    # ================================================================== #
 
     # --- Calculamos el coste total --- #
     total_cost = direct_cost + indirect_cost

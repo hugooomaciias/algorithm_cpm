@@ -13,10 +13,6 @@ def generate_output_gantt_chart_function(iteration, plot_data, OUTPUT_GANTT):
     _, ax = plt.subplots(figsize=(12, max(5, len(labels) * 0.6)))
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t\t» Configuración inicial establecida")
-    # ================================================================== #
-
     # --- Dibujamos las barras de duración para cada tarea en el diagrama --- #
     non_critical_reduced = False
 
@@ -59,10 +55,6 @@ def generate_output_gantt_chart_function(iteration, plot_data, OUTPUT_GANTT):
         # --------------------------------- #
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t\t» Barras para cada tarea creadas")
-    # ================================================================== #
-
     # --- Configuramos diferentes aspectos del diagrama --- #
     # --- Ivertimos el eje Y para mostrar la primera tarea arriba del diagrama --- #    
     ax.invert_yaxis()
@@ -96,10 +88,6 @@ def generate_output_gantt_chart_function(iteration, plot_data, OUTPUT_GANTT):
     ax.legend(handles=handles, loc='upper right')
     # --------------------------------- #
     # ------------------------------------------------------------------ #
-
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t\t» Configuración final establecida")
-    # ================================================================== #
 
     # --- Obtenemos la ruta del fichero de salida --- #
     output_path = ""

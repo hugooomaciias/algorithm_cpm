@@ -6,10 +6,6 @@ def generate_output_cost_time_curve_function(history, OUTPUT_COST_TIME_CURVE):
     costs = [iter['total_cost'] for iter in history]
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Duraciones y costes obtenidos para cada iteración")
-    # ================================================================== #
-
     # --- Establecemos el tamaño de la imagen --- #
     plt.figure(figsize=(8, 5))
     # ------------------------------------------------------------------ #
@@ -35,10 +31,6 @@ def generate_output_cost_time_curve_function(history, OUTPUT_COST_TIME_CURVE):
                  horizontalalignment='center')
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Gráfico con los datos de cada iteración marcados creado")
-    # ================================================================== #
-
     # --- Establecemos los títulos de cada eje y del propio diagrama --- #
     plt.title("Curva de Coste / Tiempo (Crashing)", fontsize=14, fontweight='bold', pad=15)
     plt.xlabel("Duración del Proyecto (Días)", fontsize=14, labelpad=15)
@@ -53,10 +45,6 @@ def generate_output_cost_time_curve_function(history, OUTPUT_COST_TIME_CURVE):
     # --- Ivertimos el eje X para mostrar la mayor duración a la izquierda del gráfico --- #
     plt.gca().invert_xaxis()
     # ------------------------------------------------------------------ #
-
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Configuración final establecida")
-    # ================================================================== #
 
     # --- Guardamos la imagen en el fichero de salida y cerramos el gráfico --- #
     plt.tight_layout()

@@ -12,17 +12,9 @@ def upload_definition_data_function(INPUT_FILE, latex_content, tasks, graph, OUT
     insert_preamble_function(latex_content)
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver la fase en la que se encuentra la ejecución === #
-    print("\t\t[1] Lectura de datos")
-    # ================================================================== #
-
     # --- Leemos el Excel desde la entrada proporcionada --- #
     input_data = pd.read_excel(INPUT_FILE, header=None)
     # ------------------------------------------------------------------ #
-
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Excel de entrada leído")
-    # ================================================================== #
 
     # --- Obtenemos los índices de las diferentes secciones --- #
     idx_duration = input_data[input_data[0].astype(str).str.contains("Duración", case=False, na=False)].index[0]
@@ -45,10 +37,6 @@ def upload_definition_data_function(INPUT_FILE, latex_content, tasks, graph, OUT
     row_normal_costs = input_data.iloc[idx_costs + 1, 1:len(tasks_ids)+1].values
     row_crash_costs = input_data.iloc[idx_costs + 2, 1:len(tasks_ids)+1].values
     # ------------------------------------------------------------------ #
-
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Tareas, duraciones y costes obtenidos")
-    # ================================================================== #
 
     # --- Realizamos una copia de la lista para poder modificarla y recorrerla al mismo tiempo --- #
     tasks_ids_complete = tasks_ids.copy()
@@ -88,49 +76,24 @@ def upload_definition_data_function(INPUT_FILE, latex_content, tasks, graph, OUT
         # --------------------------------- #
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Duraciones, costes y slope asignados a las respectivas tareas")
-    # ================================================================== #
-
     # --- Obtenemos los costes indirectos mediante la fórmula 'A + B * X(Duración camino crítico)' --- #
     indirect_cost_A = int(input_data.iloc[idx_indirect_costs + 1, 1]) if (input_data.iloc[idx_indirect_costs + 1, 1]) else 0
     indirect_cost_B = int(input_data.iloc[idx_indirect_costs + 1, 2]) if (input_data.iloc[idx_indirect_costs + 1, 2]) else 0
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Costes indirectos calculados")
-    # ================================================================== #
-
-    # === Checkpoint para ver la fase en la que se encuentra la ejecución === #
-    print("\n\t\t[2] Creación del grafo")
-    # ================================================================== #
-
     # --- Preparamos el grafo para construirlo --- #
     prepare_graph_function(latex_content, tasks, input_data, idx_dependencies, tasks_ids)
     # ------------------------------------------------------------------ #
-
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Grafo preparado para ser construido")
-    # ================================================================== #
 
     # --- Construimos el grafo --- #
     create_graph_function(tasks, graph)
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Nodos iniciales y finales creados, y tareas unidas a dichos nodos")
-    # ================================================================== #
-
     # --- Generamos el fichero de salida que contiene el grafo --- #
     generate_output_graph_function(tasks, graph, OUTPUT_GRAPH)
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Fichero de salida para el grafo generado ✔")
-    # ================================================================== #
-
     # --- Insertamos el grafo en el fichero LaTex --- #
-    print("\t\t\t  📝 [LaTex] Insercción del grafo")
     insert_graph_function(latex_content, OUTPUT_GRAPH)
     # ------------------------------------------------------------------ #
 

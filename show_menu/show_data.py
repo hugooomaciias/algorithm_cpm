@@ -58,24 +58,13 @@ def show_data_function(tasks):
     # ------------------------------------------------------------------ #
 
     # --- Dibujamos la tabla --- #
-    # --- Insertamos el título de la tabla --- #
-    print(upper_edge)
-    print(f"\t║{('MOSTRANDO DATOS EXTRAIDOS DEL EXCEL SELECCIONADO').center(total_width)}║")
-    print(middle_edge)
-    # --------------------------------- #
 
     # --- Insertamos todos los headers --- #
     header_row = "\t║" + "║".join([(header.center(width)) for header, width in zip(headers, widths)]) + "║"
-    print(header_row)
-
-    print(middle_table_edge)
     # --------------------------------- #
 
     # --- Insertamos cada uno de las filas de datos --- #
     for row in rows:
         data_row = "\t║" + "║".join([(data.center(width)) for data, width in zip(row, widths)]) + "║"
-        print(data_row)
-
-    print(lower_edge)
     # --------------------------------- #
     # ------------------------------------------------------------------ #

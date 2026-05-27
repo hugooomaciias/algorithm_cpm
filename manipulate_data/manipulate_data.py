@@ -33,12 +33,8 @@ def manipulate_data_function(self, OUTPUT_GANTT, OUTPUT_COST_TIME_CURVE):
 
         # === Checkpoint para ver la iteración en la que se encuentra la ejecución === #
         if (iteration == 0):
-            print("\t\t➤  Iteración inicial")
-
             latex_content.append(f"\\textbf{{Iteración inicial}}")
         else:
-            print(f"\n\t\t➤  Iteración {iteration}")
-
             latex_content.append(f"\\textbf{{Iteración {iteration}}}")
         # ================================= #
 
@@ -46,21 +42,12 @@ def manipulate_data_function(self, OUTPUT_GANTT, OUTPUT_COST_TIME_CURVE):
         # --------------------------------- #
 
         # --- Insertamos la tabla de duraciones y costes en el fichero LaTex --- #
-        print("\t\t  📝 [LaTex] Insercción de la tabla de duraciones y costes")
         insert_duration_costs_table_function(latex_content, tasks)
         # --------------------------------- #
-
-        # === Checkpoint para ver la fase en la que se encuentra la ejecución === #
-        print("\n\t\t\t[1] Cálculo del CPM")
-        # ================================= #
 
         # --- Calcular CPM inicial --- #
         project_duration, critical_path = calculate_cpm_function(latex_content, tasks, self.graph)
         # --------------------------------- #
-
-        # === Checkpoint para ver la fase en la que se encuentra la ejecución === #
-        print("\n\t\t\t[2] Creación del diagrama de Gantt")
-        # ================================= #
 
         if (iteration == 0):
             initial_project_duration = project_duration
@@ -69,37 +56,19 @@ def manipulate_data_function(self, OUTPUT_GANTT, OUTPUT_COST_TIME_CURVE):
         plot_data = create_gantt_chart_function(tasks, initial_project_duration)
         # --------------------------------- #
 
-        # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-        print("\t\t\t\t» Instantes de tiempo de inicio y fin obtenidos para cada tarea")
-        # ================================================================== #
-
         # --- Generamos el diagrama de gantt del proyecto --- #
         generate_output_gantt_chart_function(iteration, plot_data, OUTPUT_GANTT)
         # --------------------------------- #
 
-        # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-        print("\t\t\t\t» Fichero de salida para el diagrama de Gantt generado ✔")
-        # ================================= #
-
         # --- Insertamos el diagrama de Gantt --- #
-        print("\t\t\t\t  📝 [LaTex] Insercción del diagrama de Gantt")
         insert_gantt_chart_function(tasks, latex_content, initial_project_duration)
         # --------------------------------- #
-
-        # === Checkpoint para ver la fase en la que se encuentra la ejecución === #
-        print("\n\t\t\t[3] Cálculo del coste del proyecto")
-        # ================================= #
 
         # --- Calculamos el coste total del proyecto --- #
         total_cost, costs_content_latex = calculate_total_cost_function(tasks, self.indirect_cost_A, self.indirect_cost_B, project_duration)
         # --------------------------------- #
 
-        # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-        print("\t\t\t\t» Coste total del proyecto calculado")
-        # ================================= #
-
         # --- Insertamos el coste del proyecto en LaTex --- #
-        print("\t\t\t\t  📝 [LaTex] Insercción del coste del proyecto")
         insert_project_cost_function(latex_content, costs_content_latex)
         # --------------------------------- #
 
@@ -118,16 +87,8 @@ def manipulate_data_function(self, OUTPUT_GANTT, OUTPUT_COST_TIME_CURVE):
 
             # Si el coste actual es mayor que el anterior Y el anterior mayor que el de hace 2
             if ((actual_cost > previous_cost) and (previous_cost > previous_previous_cost)):
-                # === Indicación de finalización del algoritmo === #
-                print("\n\t\tℹ Deteniendo algoritmo: El coste ha aumentado en las dos últimas iteraciones consecutivas")
-                # ================================= #
-
                 break
         # --------------------------------- #
-
-        # === Checkpoint para ver la fase en la que se encuentra la ejecución === #
-        print("\n\t\t\t[4] Reducción de las duraciones")
-        # ================================= #
 
         # --- Obtenemos los nuevos candidatos a reducir --- #
         candidates = []
@@ -141,17 +102,9 @@ def manipulate_data_function(self, OUTPUT_GANTT, OUTPUT_COST_TIME_CURVE):
             if ((current_duration > crash_duration) and (current_cost < crash_cost)):
                 candidates.append(task)
         # --------------------------------- #
-        
-        # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-        print("\t\t\t\t» Nuevos candidatos a reducir obtenidos")
-        # ================================= #
 
         # --- Finalizamos la ejecución del algoritmo si no existen candidatos a reducir --- #
         if (not candidates):
-            # === Indicación de finalización del algoritmo === #
-            print("\n\t\tℹ Deteniendo algoritmo: Limite de reducción máxima alcanzado porque no existen más candidatos")
-            # ================================= #
-            
             break
         # --------------------------------- #
 
@@ -163,18 +116,10 @@ def manipulate_data_function(self, OUTPUT_GANTT, OUTPUT_COST_TIME_CURVE):
         best_candidate = candidates[0]
         # --------------------------------- #
 
-        # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-        print("\t\t\t\t» Mejor candidato elegido")
-        # ================================= #
-
         # --- Aplicamos la reducción sobre el mejor candidato --- #
         tasks[best_candidate]['Current Duration'] -= 1
         tasks[best_candidate]['Current Cost'] += tasks[best_candidate]['Slope']
         # --------------------------------- #
-
-        # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-        print("\t\t\t\t» Reducción aplicada al mejor candidato")
-        # ================================= #
 
         iteration += 1
     # ------------------------------------------------------------------ #
@@ -195,20 +140,11 @@ def manipulate_data_function(self, OUTPUT_GANTT, OUTPUT_COST_TIME_CURVE):
     os.rename(path_actual, path_nuevo)
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver la fase en la que se encuentra la ejecución === #
-    print("\n\t\t[5] Creación de la curva Coste / Tiempo")
-    # ================================================================== #
-
     # --- Generamos la curva de Coste / Tiempo del proyecto --- #
     generate_output_cost_time_curve_function(history, OUTPUT_COST_TIME_CURVE)
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Fichero de salida para la curva de Coste / Tiempo generado ✔")
-    # ================================================================== #
-
     # --- Insertamos el diagrama de Gantt --- #
-    print("\t\t\t  📝 [LaTex] Insercción de la curva Coste / Tiempo")
     insert_cost_time_curve_function(latex_content, history)
     # ------------------------------------------------------------------ #
 

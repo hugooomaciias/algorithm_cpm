@@ -25,11 +25,6 @@ def prepare_graph_function(latex_content, tasks, input_data, idx_dependencies, t
                 tasks[predecessor_id]['Sucessors'].append(sucessor_id)
     # ------------------------------------------------------------------ #
 
-    # === Checkpoint para ver el punto en el que se encuentra la ejecución === #
-    print("\t\t\t» Predecedores y sucesores obtenidos")
-    # ================================================================== #
-
     # --- Insertamos las dependencias en el fichero LaTex --- #
-    print("\t\t\t  📝 [LaTex] Insercción de dependencias")
     insert_dependencies_function(latex_content, tasks)
     # ------------------------------------------------------------------ #

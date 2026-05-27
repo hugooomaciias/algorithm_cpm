@@ -39,29 +39,11 @@ def show_help_menu_function():
     middle_edge = "╠" + "═" * (width) + "╣"
     lower_edge = "╚" + "═" * (width) + "╝"
     # --------------------------------- #
-
-    # --- Escribimos la ayuda --- #
-    print("")
-    print(upper_edge)
-    print(f"║{("AYUDA Y COMANDOS DEL SISTEMA").center(width)}║")
-    print(middle_edge)
     
     # --- Escribimos los comandos --- #
     for command, description in commands:
         line = f" {command:<{max_cmd_width}}{description}" 
-        print(f"║ {line:<{width - 1}}║")
     # --------------------------------- #
-        
-    print(middle_edge)
-    print(f"║{("INFORMACIÓN ADICIONAL").center(width)}║")
-    print(middle_edge)
-    
-    # --- Escribimos la información adicional --- #
-    for line in info_lines:
-        print(f"║ {line:<{width - 1}}║")
-    # --------------------------------- #
-
-    print(lower_edge)
     # ------------------------------------------------------------------ #
 
     return width, upper_edge, middle_edge, lower_edge
