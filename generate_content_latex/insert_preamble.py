@@ -1,0 +1,36 @@
+def insert_preamble_function(latex_content):
+    # --- Generamos el contenido para el preámbulo --- #
+    latex_content.append(r"\documentclass{llncs}")
+    latex_content.append(r"\usepackage{fullpage}")
+    latex_content.append(r"\usepackage{graphicx}")
+    latex_content.append(r"\usepackage{array}")
+    latex_content.append(r"\usepackage{booktabs}")
+    latex_content.append(r"\usepackage[utf8]{inputenc}")
+    latex_content.append(r"\usepackage{amsmath}")
+    latex_content.append(r"\usepackage{amssymb}")
+    latex_content.append(r"\usepackage{multicol}")
+    latex_content.append(r"\usepackage{eurosym}")
+    latex_content.append(r"\usepackage{cancel}")
+    latex_content.append(r"\usepackage{pgfgantt}")
+    latex_content.append(r"\usepackage{pgfplots}")
+    latex_content.append(r"\usepackage{tikz}")
+    latex_content.append(r"\usetikzlibrary{arrows.meta, positioning}")
+    latex_content.append(r"")
+    latex_content.append(r"\begin{document}")
+    latex_content.append(r"\newcolumntype{C}{>{\centering\arraybackslash} m{1.8cm}}")
+    latex_content.append(r"\renewcommand{\figurename}{Diagrama}")
+    latex_content.append(r"")
+    latex_content.append(r"\definecolor{Normal}{HTML}{a3b18a}")
+    latex_content.append(r"\definecolor{Critical}{HTML}{ff6b6b}")
+    latex_content.append(r"\definecolor{EdgeNormal}{HTML}{344e41}")
+    latex_content.append(r"\definecolor{EdgeCritical}{HTML}{841818}")
+    # ------------------------------------------------------------------ #
+ 
+    # --- Añadimos una sección  --- #
+    latex_content.append(r"")
+    latex_content.append(r"\begin{center}")
+    latex_content.append(r"{\huge \textbf{Algoritmo CPM}}")
+    latex_content.append(r"")
+    latex_content.append(r"\vspace{1cm}")
+    latex_content.append(r"")
+    # ------------------------------------------------------------------ #
