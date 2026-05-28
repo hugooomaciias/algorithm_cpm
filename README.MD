@@ -1,7 +1,7 @@
 # <img src="https://api.iconify.design/tabler/chart-bar.svg?color=white" width="30" align="center"> CPM Optimization Algorithm (Critical Path Method)
 
 <div align="center">
-  🌐 <strong>English</strong> | <a href="README.es.md">Español</a>
+   <strong>English</strong> | <a href="README.es.md">Español</a>
 </div>
 
 ## <img src="https://api.iconify.design/tabler/device-desktop-code.svg?color=white" width="30" align="center"> About project

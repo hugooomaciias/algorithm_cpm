@@ -1,7 +1,7 @@
 # <img src="https://api.iconify.design/tabler/chart-bar.svg?color=white" width="30" align="center"> Algoritmo de Optimización CPM (Método del Camino Crítico)
 
 <div align="center">
-  🌐 <a href="README.md">English</a> | <strong>Español</strong>
+  <a href="README.md">English</a> | <strong>Español</strong>
 </div>
 
 ## <img src="https://api.iconify.design/tabler/device-desktop-code.svg?color=white" width="30" align="center"> Sobre el proyecto
