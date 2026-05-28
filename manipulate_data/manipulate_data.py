@@ -125,7 +125,10 @@ def manipulate_data_function(self, OUTPUT_GANTT, OUTPUT_COST_TIME_CURVE):
     # ------------------------------------------------------------------ #
 
     # --- Redefinimos el nombre del fichero con el diagrama de Gantt óptimo --- #
-    best_iter_idx, _ = min(enumerate(history), key=lambda x: x[1]['total_cost'])
+    best_iter_idx, best_data = min(enumerate(history), key=lambda x: x[1]['total_cost'])
+
+    self.optimal_duration = best_data['duration']
+    self.optimal_cost = best_data['total_cost']
 
     if best_iter_idx == 0:
         current_output_path = "output_gantt_iter_inicial.png"
@@ -137,7 +140,8 @@ def manipulate_data_function(self, OUTPUT_GANTT, OUTPUT_COST_TIME_CURVE):
     path_actual = os.path.join(OUTPUT_GANTT, current_output_path)
     path_nuevo = os.path.join(OUTPUT_GANTT, new_output_path)
 
-    os.rename(path_actual, path_nuevo)
+    if os.path.exists(path_actual):
+        os.rename(path_actual, path_nuevo)
     # ------------------------------------------------------------------ #
 
     # --- Generamos la curva de Coste / Tiempo del proyecto --- #

@@ -1,8 +1,13 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import matplotlib.ticker as ticker
+import os
 
 def generate_output_gantt_chart_function(iteration, plot_data, OUTPUT_GANTT):
+    if not plot_data:
+        print("[ERROR] plot_data is empty")
+        return
+
     # --- Obtenemos el número de tareas existentes y sus respectivos nombres --- #
     labels = [d['label'] for d in plot_data]
     y_positions = range(len(labels))
@@ -92,10 +97,12 @@ def generate_output_gantt_chart_function(iteration, plot_data, OUTPUT_GANTT):
     # --- Obtenemos la ruta del fichero de salida --- #
     output_path = ""
     
-    if (iteration == 0):
-        output_path = f"{OUTPUT_GANTT}output_gantt_iter_inicial.png"
+    if iteration == 0:
+        filename = "output_gantt_iter_inicial.png"
     else:
-        output_path = f"{OUTPUT_GANTT}output_gantt_iter_{iteration}.png"
+        filename = f"output_gantt_iter_{iteration}.png"
+
+    output_path = os.path.join(OUTPUT_GANTT, filename)
 
     # --- Guardamos la imagen en el fichero de salida y cerramos el diagrama --- #
     plt.tight_layout()
